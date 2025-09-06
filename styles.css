@@ -1,0 +1,108 @@
+/* Reset and Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  color: #000;
+  background-color: #f0f0f0;
+  font-family: "Intel One Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1b1b1b;
+    color: #fff;
+  }
+}
+.primary-nav {
+  display: flex;
+}
+
+/* Nav Styles */
+.primary-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav {
+  background-color: #111;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: end;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem;
+}
+
+.nav-links a:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* Content */
+
+.content {
+  display: flex;
+  justify-content: center;
+}
+
+.content div {
+  max-width: 800px;
+}
+
+.content ul {
+  list-style-type: square;
+  padding-left: 2rem;
+  margin-top: 1rem;
+}
+
+.content ul li {
+  margin-bottom: 1rem;
+}
+
+.content h2 {
+  margin-top: 3rem;
+}
+
+.content h3 {
+  margin-top: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+  .nav-links.show {
+    display: flex;
+  }
+  .nav-toggle {
+    display: block;
+  }
+}

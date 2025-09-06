@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Michael J West - Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Intel+One+Mono:ital,wght@0,300..700;1,300..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav class="primary-nav">
+      <h1>Michael J West</h1>
+      <button class="nav-toggle">☰</button>
+
+      <ul class="nav-links">
+        <li><a href="#" onclick="showList('experience')">Experience</a></li>
+        <li><a href="#" onclick="showList('skills')">Skills</a></li>
+        <li><a href="#" onclick="showList('education')">Education</a></li>
+      </ul>
+    </nav>
+
+    <div class="content">
+      <div id="experience">
+        <h2>Tactacam LLC (2022-Present)</h2>
+        <h3>Senior Frontend Software Engineer</h3>
+        <ul>
+          <li>
+            Lead frontend development and architecture of a social media
+            platform for an existing React Native application with 10,000 active
+            users (FeatherSnap)
+          </li>
+          <li>
+            Lead all efforts related to frontend team onboarding, including
+            mentoring of two college-level interns
+          </li>
+          <li>
+            Collaborated with design and product teams to develop pixel-perfect
+            features for the initial release of the FeatherSnap mobile app
+          </li>
+          <li>
+            Implemented continuous delivery pipelines for Android and iOS
+            builds, tripling the number of weekly builds, using CodeMagic, Expo
+            EAS, and GitHub Actions
+          </li>
+          <li>
+            Built a tool for end-to-end testing of mobile apps, using Appium,
+            WebDriverIO, and Cucumber test-cases
+          </li>
+        </ul>
+        <h2>SAE - Society of Automotive Engineers (2021)</h2>
+        <h3>Frontend Software Engineer</h3>
+        <ul>
+          <li>
+            Built a single-page-application for the company’s biggest growth
+            area, DATC, generating millions in annual revenue
+          </li>
+        </ul>
+        <h2>DDI - Development Dimensions International (2019-2020)</h2>
+        <h3>Software Engineer I</h3>
+        <ul>
+          <li>
+            Developed end-to-end features relating to data visualization and
+            course content, using React Native, Angular, D3, .NET, and SQL
+          </li>
+        </ul>
+        <h3>DevOps Engineer</h3>
+        <ul>
+          <li>
+            Designed internal tooling using Azure DevOps and Logic Apps to
+            automate common requests, saving developers hours every week and
+            eliminating 90% of all context switching for our team
+          </li>
+        </ul>
+        <h2>Federated Investors (2017-2018)</h2>
+        <h3>Programmer/Analyst</h3>
+        <ul>
+          <li>
+            Completed 3 rotations as a programming intern on the Client
+            Applications and System Integration teams
+          </li>
+          <li>
+            Designed a prototype using JavaScript for a rebuild of an internal
+            tool that managed open and closed dates for different markets
+          </li>
+          <li>
+            Automated a spreadsheet-application using Excel VBA macros to handle
+            records for hundreds of security and trading options
+          </li>
+          <li>
+            Updated PowerShell batch scripts and SQL stored procedures to ensure
+            data integrity across datasets spanning millions of records
+          </li>
+        </ul>
+      </div>
+      <div id="skills" style="display: none">
+        <ul>
+          <li>
+            <b>Programming Languages:</b> JavaScript/TypeScript with ES6+, Java,
+            C++, C
+          </li>
+          <li>
+            <b>Frontend Frameworks:</b> React, React Native, Angular, Expo,
+            NextJS, Tailwind, D3
+          </li>
+          <li>
+            <b>State Management:</b> React Query/TanStack, Redux, Zustand,
+            Context API
+          </li>
+          <li>
+            <b>AWS Cloud:</b> AWS CDK, Lambda Functions, DynamoDB, SNS, S3, and
+            Cognito
+          </li>
+          <li>
+            <b>Testing:</b> Jest, React Testing Library, Appium, WebDriverIO
+          </li>
+          <li><b>DevOps:</b> GitHub Actions, CodeMagic, Expo EAS</li>
+        </ul>
+      </div>
+      <div id="education" style="display: none">
+        <h2>
+          University of Pittsburgh, Bachelor’s of Science in Engineering (2018)
+        </h2>
+        <h3>Major: Computer Engineering</h3>
+        <ul>
+          <li>
+            <b>Software Engineering</b> - Completed a semester-long project
+            designed to simulate real-world software development communication
+            and processes, while building an application based on a real-life
+            train dispatching application
+          </li>
+          <li><b>Software Quality Assurance</b> - Projects with Selenium</li>
+          <li>
+            <b>Data Structures & Algorithms</b> - Object-oriented-programming
+            projects using Java
+          </li>
+          <li>
+            <b>Capstone and Senior Design</b> - Realized several products from
+            ideation with Arduino and breadboard to finished prototypes with
+            custom-built PCBs
+          </li>
+        </ul>
+        <h3>Minor: Industrial Engineering</h3>
+        <ul>
+          <li>Engineering Management</li>
+          <li>Productivity Analysis</li>
+          <li>Human Factors Engineering</li>
+          <li>Probability & Statistics</li>
+          <li>Discrete Mathematics</li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      const toggle = document.querySelector(".nav-toggle");
+      const links = document.querySelector(".nav-links");
+
+      toggle.addEventListener("click", () => {
+        links.classList.toggle("show");
+      });
+
+      function showList(id) {
+        const lists = document.querySelectorAll(".content div");
+        lists.forEach((list) => (list.style.display = "none"));
+        document.getElementById(id).style.display = "block";
+      }
+    </script>
+  </body>
+</html>
