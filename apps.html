@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Michael J West - Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Intel+One+Mono:ital,wght@0,300..700;1,300..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav class="primary-nav">
+      <h1>Michael J West</h1>
+      <button class="nav-toggle">☰</button>
+
+      <ul class="nav-links">
+        <li><a href="/index.html">Resume</a></li>
+        <li><a href="/apps.html">Apps</a></li>
+      </ul>
+    </nav>
+
+    <div class="app-content">
+      <div id="apps" >
+        <div class="app-card">
+          <div class="app-card-content">
+            <h1><a href="https://www.sigsauer.com/sigconnect" target="blank">SIG Connect</a></h1>
+            <ul>
+                <li>Navigation</li>
+                <li>Video player and streaming</li>
+                <li>Scramble Game</li>
+            </ul>
+            <a href="https://sigsauer.onelink.me/oWXN/cwwd3znp" target="blank">Android</a>
+            <a href="https://sigsauer.onelink.me/oWXN/k2dizrtq" target="blank">iOS</a>
+          </div>
+          <iframe width="420" height="315" frameborder="0"
+            src="https://www.youtube.com/embed/yTbrs7jvDo4">
+          </iframe>
+        </div>
+        <div class="app-card">
+          <div class="app-card-content">
+            <h1><a href="https://www.feathersnapcam.com" target="blank">FeatherSnap</a></h1>
+            <ul>
+                <li>Social Media Feed</li>
+                <li>Bird Identification</li>
+                <li>Authentication</li>
+                <li>Push Notifications</li>
+            </ul>
+            <a href="https://play.google.com/store/apps/details?id=com.feathersnapcam.mobile&pli=1" target="blank">Android</a>
+            <a href="https://apps.apple.com/us/app/feathersnapcam/id6503296944" target="blank">iOS</a>
+            <a href="https://account.feathersnapcam.com/en/login" target="blank">Web</a>
+          </div>
+          <iframe width="420" height="315" frameborder="0"
+            src="https://www.youtube.com/embed/7SYV-MQ8Uno">
+          </iframe>
+        </div>
+        <div class="app-card">
+        <div class="app-card-content">
+          <h1><a href="https://www.defendcellcam.com/defend-app-plan">Defend</a></h1>
+            <ul>
+                <li>Camera Activation</li>
+            </ul>
+          <a href="https://play.google.com/store/apps/details?id=com.tactacam.defend" target="blank">Android</a>
+          <a href="https://apps.apple.com/us/app/defend-by-tactacam/id6467141793" target="blank">iOS</a>
+          <a href="https://account.defendcellcam.com/?_gl=1*hjgbwh*_gcl_au*MTY1NTcwMjk1LjE3NzAwNTI1OTY.*_ga*MTg1NzgxNTYyMS4xNzcwMDUyNTk2*_ga_W3BDBNVBBC*czE3NzAwNTI1OTYkbzEkZzAkdDE3NzAwNTI1OTYkajYwJGwwJGgw" target="blank">Web</a>
+          </div>
+           <iframe width="420" height="315" frameborder="0"
+            src="https://www.youtube.com/embed/PUBCIxhLWvI">
+          </iframe>
+        </div>
+    </div>
+    <script>
+        const toggle = document.querySelector(".nav-toggle");
+        const links = document.querySelector(".nav-links");
+
+        toggle.addEventListener("click", () => {
+          links.classList.toggle("show");
+        });
+
+        function showList(id) {
+          const lists = document.querySelectorAll(".content div");
+          lists.forEach((list) => (list.style.display = "none"));
+          document.getElementById(id).style.display = "block";
+        }
+    </script>
+  </body>
+</html>
