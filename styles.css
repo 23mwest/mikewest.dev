@@ -182,6 +182,8 @@ nav {
   .app-content .app-card {
     display: block;
     box-sizing: border-box;
+    margin-left: 1rem;
+    margin-right: 1rem;
   }
 
 }
