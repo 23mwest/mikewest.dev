@@ -100,24 +100,22 @@ nav {
 
 .app-content {
   display: flex;
-  justify-content: center;
-  margin-left: 1em;
-  margin-right: 1em;
-}
-
-.app-content div {
-  max-width: 800px;
+  flex-direction: column;
   padding-bottom: 4rem;
 }
 
-  .app-content a {
-    color: #000;
-  }
+.app-content div {
+  padding-bottom: 4rem;
+}
 
-  .app-content a:hover {
-    color: #fff;
-    background-color: #000;
-  }
+.app-content a {
+  color: #000;
+}
+
+.app-content a:hover {
+  color: #fff;
+  background-color: #000;
+}
 
 .app-content .app-card {
   border: 2px solid #1b1b1b;
@@ -125,22 +123,34 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  margin-top: 1rem;
+  margin-top: 2rem;
+  margin-left:4rem;
+  margin-right:4rem;
 }
 
 .app-content .app-card-content {
   display: block;
-  margin-right: 1rem;
+  margin-right: 2rem;
 }
 
 .app-content ul {
   list-style-type: square;
   padding-left: 2rem;
-  margin-top: 1rem;
 }
 
 .app-content ul li {
   margin-bottom: 1rem;
+}
+
+.video-container {
+    width: 100%;
+    max-width: 560px;
+    max-height: 315px;
+    
+}
+.video-container iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
 }
 
 
@@ -171,6 +181,7 @@ nav {
 @media (max-width: 800px) {
   .app-content .app-card {
     display: block;
+    box-sizing: border-box;
   }
 
 }
