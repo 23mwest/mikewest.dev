@@ -1,29 +1,7 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Michael J West - Resume</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Intel+One+Mono:ital,wght@0,300..700;1,300..700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="src/styles.css" />
-    <script type="module" src="/main.js"></script>
-  </head>
-  <body>
-    <nav class="primary-nav">
-      <h1 class="text-3xl font-bold underline">Michael J West</h1>
-      <button class="nav-toggle">☰</button>
-
-      <ul class="nav-links">
-        <li><a href="/index.html">Resume</a></li>
-        <li><a href="/apps.html">Apps</a></li>
-      </ul>
-    </nav>
-
+---
+import Header from '../layouts/Header.astro'
+---
+<Header>
     <div class="app-content">
       <div class="app-card">
         <div class="app-card-content">
@@ -119,13 +97,4 @@
         </div>
       </div>
     </div>
-    <script>
-      const toggle = document.querySelector(".nav-toggle");
-      const links = document.querySelector(".nav-links");
-
-      toggle.addEventListener("click", () => {
-        links.classList.toggle("show");
-      });
-    </script>
-  </body>
-</html>
+</Header>
