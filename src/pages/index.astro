@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Intel+One+Mono:ital,wght@0,300..700;1,300..700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="src/styles.css" />
     <script type="module" src="/main.js"></script>
   </head>
   <body>
@@ -119,12 +119,6 @@
       toggle.addEventListener("click", () => {
         links.classList.toggle("show");
       });
-
-      function showList(id) {
-        const lists = document.querySelectorAll(".content div");
-        lists.forEach((list) => (list.style.display = "none"));
-        document.getElementById(id).style.display = "block";
-      }
     </script>
   </body>
 </html>

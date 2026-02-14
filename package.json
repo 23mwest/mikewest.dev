@@ -1,17 +1,17 @@
 {
   "scripts": {
-    "build": "vite build",
-    "preview": "vite preview",
-    "dev": "vite",
+    "build": "astro build",
+    "preview": "astro preview",
+    "dev": "astro dev",
     "format": "prettier . --write"
   },
   "devDependencies": {
-    "vite": "^7.3.1",
     "prettier": "^3.8.1"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
     "alpinejs": "^3.15.8",
+    "astro": "^5.17.2",
     "tailwindcss": "^4.1.18"
   }
 }
