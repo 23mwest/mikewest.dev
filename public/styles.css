@@ -96,6 +96,18 @@ nav {
   margin-top: 0.5rem;
 }
 
+/* Resume Page */
+.pdf-container{
+  height: 100vh;
+  width: 100vw
+}
+
+embed {
+  display: block;
+  height: 100vh;
+  width: 100vw
+}
+
 /* Apps Content */
 
 .app-content {
