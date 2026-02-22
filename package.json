@@ -6,6 +6,7 @@
     "format": "prettier . --write"
   },
   "devDependencies": {
+    "daisyui": "^5.5.19",
     "prettier": "^3.8.1"
   },
   "dependencies": {

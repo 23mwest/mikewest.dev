@@ -18,25 +18,56 @@ import "../styles/global.css";
     <script type="module" src="/main.js"></script>
   </head>
   <body>
-    <nav class="primary-nav">
-      <h1 class="text-3xl font-bold underline">Michael J West</h1>
-      <button class="nav-toggle">☰</button>
-
-      <ul class="nav-links">
-        <li><a href="/index.html">Resume</a></li>
-        <li><a href="/apps.html">Apps</a></li>
-      </ul>
-    </nav>
-    <article>
-      <slot />
-    </article>
-    <script>
-      const toggle = document.querySelector(".nav-toggle");
-      const links = document.querySelector(".nav-links");
-
-      toggle.addEventListener("click", () => {
-        links.classList.toggle("show");
-      });
-    </script>
+    <div class="drawer">
+      <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content flex flex-col">
+        <!-- Navbar -->
+        <div class="navbar bg-base-300 w-full">
+          <div class="flex-none lg:hidden">
+            <label
+              for="my-drawer-2"
+              aria-label="open sidebar"
+              class="btn btn-square btn-ghost"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                class="inline-block h-6 w-6 stroke-current"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </label>
+          </div>
+          <div class="text-3xl text-bold mx-2 flex-1 px-2">Michael J West</div>
+          <div class="hidden flex-none lg:block">
+            <ul class="menu menu-horizontal">
+              <!-- Navbar menu content here -->
+              <li><a href="/index.html" class="text-xl">Resume</a></li>
+              <li><a href="/apps.html" class="text-xl">Apps</a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- Page content -->
+        <article>
+          <slot />
+        </article>
+      </div>
+      <div class="drawer-side">
+        <label
+          for="my-drawer-2"
+          aria-label="close sidebar"
+          class="drawer-overlay"></label>
+        <ul class="menu bg-base-300 min-h-full w-80 p-4">
+          <!-- Sidebar content here -->
+          <li><a class="text-xl" href="/index.html">Resume</a></li>
+          <li><a class="text-xl" href="/apps.html">Apps</a></li>
+        </ul>
+      </div>
+    </div>
   </body>
 </html>
