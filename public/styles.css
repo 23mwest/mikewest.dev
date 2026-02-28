@@ -1,7 +1,7 @@
 
 body {
-  color: #000;
-  background-color: #f0f0f0;
+  color: hsl(var(--bc));
+  background-color: hsl(var(--b1));
   font-family: "Intel One Mono", monospace;
   font-optical-sizing: auto;
   font-weight: 300;
@@ -56,16 +56,15 @@ body {
 }
 
 .app-content a {
-  color: #000;
+  color: hsl(var(--bc));
 }
 
 .app-content a:hover {
-  color: #fff;
-  background-color: #000;
+  color: hsl(var(--b1));
+  background-color: hsl(var(--bc));
 }
 
 .app-content .app-card {
-  border: 2px solid #1b1b1b;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -129,42 +128,5 @@ body {
     box-sizing: border-box;
     margin-left: 1rem;
     margin-right: 1rem;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #1b1b1b;
-    color: #fff;
-  }
-
-  .primary-nav {
-    background-color: #000;
-  }
-
-  .nav-toggle {
-    color: #fff;
-  }
-
-  .nav-links a {
-    color: #fff;
-  }
-
-  .nav-links a:hover {
-    background: #fff;
-    color: #000;
-  }
-
-  .app-content a {
-    color: #fff;
-  }
-
-  .app-content a:hover {
-    color: #000;
-    background-color: #fff;
-  }
-
-  .app-content .app-card {
-    border: 2px solid #f0f0f0;
   }
 }

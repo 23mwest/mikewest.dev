@@ -7,13 +7,30 @@ import "../styles/global.css";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Michael J West - Portfolio</title>
+    <title>Michael J West</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Intel+One+Mono:ital,wght@0,300..700;1,300..700&display=swap"
       rel="stylesheet"
     />
+    <script is:inline>
+      (() => {
+        const storedTheme = localStorage.getItem("theme");
+        const mode =
+          storedTheme === "light" ||
+          storedTheme === "dark" ||
+          storedTheme === "system"
+            ? storedTheme
+            : "system";
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        const isDark = mode === "system" ? prefersDark : mode === "dark";
+        document.documentElement.dataset.theme = isDark ? "business" : "nord";
+        document.documentElement.classList.toggle("dark", isDark);
+      })();
+    </script>
     <link rel="stylesheet" href="/styles.css" />
     <script type="module" src="/main.js"></script>
   </head>
@@ -22,7 +39,7 @@ import "../styles/global.css";
       <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content flex flex-col">
         <!-- Navbar -->
-        <div class="navbar bg-base-300 w-full">
+        <div class="navbar bg-base-300 w-full relative">
           <div class="flex-none lg:hidden">
             <label
               for="my-drawer-2"
@@ -43,7 +60,38 @@ import "../styles/global.css";
               </svg>
             </label>
           </div>
-          <div class="text-3xl text-bold mx-2 flex-1 px-2">Michael J West</div>
+          <div class="text-3xl font-bold mx-2 flex-1 px-2">Michael J West</div>
+          <div
+            class="ml-auto lg:ml-0 lg:absolute lg:left-1/2 lg:-translate-x-1/2"
+          >
+            <div class="tabs tabs-box">
+              <input
+                id="theme-tab-system"
+                type="radio"
+                name="theme_tabs"
+                class="tab"
+                aria-label="💻"
+                value="system"
+                checked
+              />
+              <input
+                id="theme-tab-light"
+                type="radio"
+                name="theme_tabs"
+                class="tab"
+                aria-label="🌞"
+                value="light"
+              />
+              <input
+                id="theme-tab-dark"
+                type="radio"
+                name="theme_tabs"
+                class="tab"
+                aria-label="🌛"
+                value="dark"
+              />
+            </div>
+          </div>
           <div class="hidden flex-none lg:block">
             <ul class="menu menu-horizontal">
               <!-- Navbar menu content here -->
