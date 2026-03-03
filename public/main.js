@@ -24,11 +24,23 @@ function applyTheme(mode) {
   document.documentElement.dataset.theme = isDark ? DARK_THEME : LIGHT_THEME;
   document.documentElement.classList.toggle("dark", isDark);
 
+  const themeLabels = document.querySelectorAll(".theme-tab-label");
+  themeLabels.forEach((label) => {
+    label.classList.remove("tab-active");
+  });
+
   const themeTab = document.querySelector(
     `input[name="theme_tabs"][value="${mode}"]`,
   );
   if (themeTab instanceof HTMLInputElement) {
     themeTab.checked = true;
+
+    const activeLabel = document.querySelector(
+      `.theme-tab-label[data-theme-mode="${mode}"]`,
+    );
+    if (activeLabel instanceof HTMLLabelElement) {
+      activeLabel.classList.add("tab-active");
+    }
   }
 }
 
