@@ -1,6 +1,6 @@
 const THEME_KEY = "theme";
-const LIGHT_THEME = "nord";
-const DARK_THEME = "business";
+const LIGHT_THEME = "light";
+const DARK_THEME = "night";
 const THEME_MODES = ["system", "light", "dark"];
 
 function getStoredMode() {
@@ -27,6 +27,7 @@ function applyTheme(mode) {
   const themeLabels = document.querySelectorAll(".theme-tab-label");
   themeLabels.forEach((label) => {
     label.classList.remove("tab-active");
+    label.classList.remove("text-accent");
   });
 
   const themeTab = document.querySelector(
@@ -40,6 +41,7 @@ function applyTheme(mode) {
     );
     if (activeLabel instanceof HTMLLabelElement) {
       activeLabel.classList.add("tab-active");
+      activeLabel.classList.add("text-accent");
     }
   }
 }

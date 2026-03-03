@@ -1,5 +1,27 @@
 ---
 import "../styles/global.css";
+
+const normalizePath = (path) => {
+  const withoutHashOrQuery = path.split("#")[0].split("?")[0];
+  const withoutHtml =
+    withoutHashOrQuery === "/index.html"
+      ? "/"
+      : withoutHashOrQuery.endsWith(".html")
+        ? withoutHashOrQuery.slice(0, -5)
+        : withoutHashOrQuery;
+  const trimmed = withoutHtml.replace(/\/+$/, "");
+  return trimmed || "/";
+};
+
+const currentPath = normalizePath(Astro.url.pathname);
+const navItems = [
+  { href: "/", label: "Resume", paths: ["/"] },
+  { href: "/apps", label: "Apps", paths: ["/apps"] },
+  { href: "/links", label: "Links", paths: ["/links"] },
+];
+
+const isActivePath = (paths) =>
+  paths.some((path) => normalizePath(path) === currentPath);
 ---
 
 <!doctype html>
@@ -27,7 +49,7 @@ import "../styles/global.css";
           "(prefers-color-scheme: dark)",
         ).matches;
         const isDark = mode === "system" ? prefersDark : mode === "dark";
-        document.documentElement.dataset.theme = isDark ? "business" : "nord";
+        document.documentElement.dataset.theme = isDark ? "night" : "light";
         document.documentElement.classList.toggle("dark", isDark);
       })();
     </script>
@@ -51,7 +73,7 @@ import "../styles/global.css";
             <label
               for="my-drawer-2"
               aria-label="open sidebar"
-              class="btn btn-square btn-ghost"
+              class="btn btn-circle btn-ghost"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +93,11 @@ import "../styles/global.css";
           <div
             class="ml-auto lg:ml-0 lg:absolute lg:left-1/2 lg:-translate-x-1/2"
           >
-            <div class="tabs tabs-box theme-tabs" role="tablist" aria-label="Theme selector">
+            <div
+              class="tabs tabs-box theme-tabs rounded-full"
+              role="tablist"
+              aria-label="Theme selector"
+            >
               <input
                 id="theme-tab-system"
                 type="radio"
@@ -82,7 +108,7 @@ import "../styles/global.css";
               />
               <label
                 for="theme-tab-system"
-                class="tab theme-tab-label"
+                class="tab theme-tab-label rounded-full"
                 data-theme-mode="system"
                 aria-label="Use system theme"
               >
@@ -112,7 +138,7 @@ import "../styles/global.css";
               />
               <label
                 for="theme-tab-light"
-                class="tab theme-tab-label"
+                class="tab theme-tab-label rounded-full"
                 data-theme-mode="light"
                 aria-label="Use light theme"
               >
@@ -148,7 +174,7 @@ import "../styles/global.css";
               />
               <label
                 for="theme-tab-dark"
-                class="tab theme-tab-label"
+                class="tab theme-tab-label rounded-full"
                 data-theme-mode="dark"
                 aria-label="Use dark theme"
               >
@@ -170,11 +196,26 @@ import "../styles/global.css";
             </div>
           </div>
           <div class="hidden flex-none lg:block">
-            <ul class="menu menu-horizontal">
-              <!-- Navbar menu content here -->
-              <li><a href="/index.html" class="text-xl">Resume</a></li>
-              <li><a href="/apps.html" class="text-xl">Apps</a></li>
-              <li><a href="/links" class="text-xl">Links</a></li>
+            <ul class="menu menu-horizontal rounded-full">
+              {
+                navItems.map((item) => (
+                  <li class="mr-1">
+                    <a
+                      href={item.href}
+                      class:list={[
+                        "text-xl rounded-full",
+                        isActivePath(item.paths) &&
+                          "text-primary bg-primary/15 rounded-full font-semibold",
+                      ]}
+                      aria-current={
+                        isActivePath(item.paths) ? "page" : undefined
+                      }
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))
+              }
             </ul>
           </div>
         </div>
@@ -189,10 +230,23 @@ import "../styles/global.css";
           aria-label="close sidebar"
           class="drawer-overlay"></label>
         <ul class="menu bg-base-300 min-h-full w-80 p-4">
-          <!-- Sidebar content here -->
-          <li><a class="text-xl" href="/index.html">Resume</a></li>
-          <li><a class="text-xl" href="/apps.html">Apps</a></li>
-          <li><a class="text-xl" href="/links">Links</a></li>
+          {
+            navItems.map((item) => (
+              <li class="mb-2">
+                <a
+                  class:list={[
+                    "text-xl rounded-full",
+                    isActivePath(item.paths) &&
+                      "text-primary bg-primary/15 rounded-full font-semibold",
+                  ]}
+                  href={item.href}
+                  aria-current={isActivePath(item.paths) ? "page" : undefined}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
     </div>
