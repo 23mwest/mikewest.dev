@@ -1,0 +1,336 @@
+---
+import Header from "../layouts/Header.astro";
+---
+
+<Header>
+  <main class="snake-page px-4 py-8">
+    <section class="snake-card mx-auto max-w-3xl rounded-box border-2 border-solid border-base-content/60 bg-base-100 p-6">
+      <h1 class="text-3xl font-bold text-base-content">Snake</h1>
+      <p class="mt-2 text-base-content/70">
+        Use arrow keys or WASD to move. Press Space to pause/resume and Enter to restart.
+      </p>
+
+      <div class="mt-5 grid gap-4 sm:grid-cols-3">
+        <div class="stat rounded-box bg-base-200">
+          <div class="stat-title">Score</div>
+          <div id="score" class="stat-value text-primary">0</div>
+        </div>
+        <div class="stat rounded-box bg-base-200">
+          <div class="stat-title">Best</div>
+          <div id="best" class="stat-value">0</div>
+        </div>
+        <div class="stat rounded-box bg-base-200">
+          <div class="stat-title">Status</div>
+          <div id="status" class="stat-value text-lg">Ready</div>
+        </div>
+      </div>
+
+      <div class="mt-6 flex justify-center">
+        <canvas
+          id="snake-canvas"
+          width="480"
+          height="480"
+          class="w-full max-w-[480px] rounded-box border-2 border-base-content/30 bg-base-300"
+          style="touch-action: none;"
+          aria-label="Snake game board"
+        ></canvas>
+      </div>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        <button id="start-btn" class="btn btn-primary">Start / Restart</button>
+        <button id="pause-btn" class="btn btn-outline">Pause</button>
+      </div>
+    </section>
+  </main>
+</Header>
+
+<script>
+  /** @typedef {{x: number, y: number}} Point */
+
+  const canvasEl = document.getElementById("snake-canvas");
+  if (!(canvasEl instanceof HTMLCanvasElement)) {
+    throw new Error("Snake canvas not found");
+  }
+  const canvas = canvasEl;
+
+  const context = canvas.getContext("2d");
+  if (!(context instanceof CanvasRenderingContext2D)) {
+    throw new Error("2D canvas context not available");
+  }
+  const ctx = context;
+
+  const scoreEl = document.getElementById("score");
+  const bestEl = document.getElementById("best");
+  const statusEl = document.getElementById("status");
+  const startBtn = document.getElementById("start-btn");
+  const pauseBtn = document.getElementById("pause-btn");
+
+  if (
+    !(scoreEl instanceof HTMLElement) ||
+    !(bestEl instanceof HTMLElement) ||
+    !(statusEl instanceof HTMLElement) ||
+    !(startBtn instanceof HTMLButtonElement) ||
+    !(pauseBtn instanceof HTMLButtonElement)
+  ) {
+    throw new Error("Snake controls not found");
+  }
+
+  const gridSize = 24;
+  const tileSize = canvas.width / gridSize;
+  const minSwipeDistance = 24;
+
+  /** @type {Point[]} */
+  let snake = [];
+  /** @type {Point} */
+  let direction = { x: 1, y: 0 };
+  /** @type {Point} */
+  let nextDirection = { x: 1, y: 0 };
+  /** @type {Point} */
+  let food = { x: 0, y: 0 };
+  let score = 0;
+  let bestScore = Number(localStorage.getItem("snakeBestScore") || 0);
+  /** @type {ReturnType<typeof setInterval> | undefined} */
+  let gameLoop;
+  let paused = false;
+  let gameOver = false;
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let activePointerId = -1;
+
+  bestEl.textContent = String(bestScore);
+
+  function randomFoodPosition() {
+    /** @type {Point} */
+    let nextFood;
+    do {
+      nextFood = {
+        x: Math.floor(Math.random() * gridSize),
+        y: Math.floor(Math.random() * gridSize),
+      };
+    } while (snake.some((part) => part.x === nextFood.x && part.y === nextFood.y));
+
+    return nextFood;
+  }
+
+  function resetGame() {
+    snake = [
+      { x: 12, y: 12 },
+      { x: 11, y: 12 },
+      { x: 10, y: 12 },
+    ];
+    direction = { x: 1, y: 0 };
+    nextDirection = direction;
+    food = randomFoodPosition();
+    score = 0;
+    paused = false;
+    gameOver = false;
+    scoreEl.textContent = "0";
+    pauseBtn.textContent = "Pause";
+    statusEl.textContent = "Running";
+    statusEl.classList.remove("text-error");
+  }
+
+  function setDirection(x, y) {
+    if (gameOver || paused) {
+      return;
+    }
+
+    if (x === -direction.x && y === -direction.y) {
+      return;
+    }
+
+    nextDirection = { x, y };
+  }
+
+  function togglePause() {
+    if (gameOver) {
+      return;
+    }
+
+    paused = !paused;
+    pauseBtn.textContent = paused ? "Resume" : "Pause";
+    statusEl.textContent = paused ? "Paused" : "Running";
+  }
+
+  function finishGame() {
+    gameOver = true;
+    statusEl.textContent = "Game Over";
+    statusEl.classList.add("text-error");
+
+    if (score > bestScore) {
+      bestScore = score;
+      localStorage.setItem("snakeBestScore", String(bestScore));
+      bestEl.textContent = String(bestScore);
+    }
+  }
+
+  function drawRoundedTile(x, y, color) {
+    const radius = tileSize * 0.22;
+    const px = x * tileSize;
+    const py = y * tileSize;
+
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(px + radius, py);
+    ctx.arcTo(px + tileSize, py, px + tileSize, py + tileSize, radius);
+    ctx.arcTo(px + tileSize, py + tileSize, px, py + tileSize, radius);
+    ctx.arcTo(px, py + tileSize, px, py, radius);
+    ctx.arcTo(px, py, px + tileSize, py, radius);
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  function render() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let row = 0; row < gridSize; row += 1) {
+      for (let col = 0; col < gridSize; col += 1) {
+        ctx.fillStyle = (row + col) % 2 === 0 ? "#1f2937" : "#111827";
+        ctx.fillRect(col * tileSize, row * tileSize, tileSize, tileSize);
+      }
+    }
+
+    drawRoundedTile(food.x, food.y, "#ef4444");
+
+    snake.forEach((part, index) => {
+      drawRoundedTile(part.x, part.y, index === 0 ? "#22c55e" : "#16a34a");
+    });
+  }
+
+  function tick() {
+    if (paused || gameOver) {
+      render();
+      return;
+    }
+
+    direction = nextDirection;
+    const head = {
+      x: snake[0].x + direction.x,
+      y: snake[0].y + direction.y,
+    };
+
+    const hitsWall =
+      head.x < 0 || head.y < 0 || head.x >= gridSize || head.y >= gridSize;
+    const hitsSelf = snake.some((part) => part.x === head.x && part.y === head.y);
+
+    if (hitsWall || hitsSelf) {
+      finishGame();
+      render();
+      return;
+    }
+
+    snake.unshift(head);
+
+    if (head.x === food.x && head.y === food.y) {
+      score += 1;
+      scoreEl.textContent = String(score);
+      food = randomFoodPosition();
+    } else {
+      snake.pop();
+    }
+
+    render();
+  }
+
+  function startGame() {
+    clearInterval(gameLoop);
+    resetGame();
+    render();
+    gameLoop = setInterval(tick, 100);
+  }
+
+  window.addEventListener("keydown", (event) => {
+    const key = event.key.toLowerCase();
+
+    if (["arrowup", "arrowdown", "arrowleft", "arrowright", " ", "enter", "w", "a", "s", "d"].includes(key)) {
+      event.preventDefault();
+    }
+
+    if (key === "arrowup" || key === "w") setDirection(0, -1);
+    if (key === "arrowdown" || key === "s") setDirection(0, 1);
+    if (key === "arrowleft" || key === "a") setDirection(-1, 0);
+    if (key === "arrowright" || key === "d") setDirection(1, 0);
+    if (key === " ") togglePause();
+    if (key === "enter") startGame();
+  });
+
+  startBtn.addEventListener("click", startGame);
+  pauseBtn.addEventListener("click", togglePause);
+
+  function handleSwipeEnd(endX, endY) {
+    const deltaX = endX - touchStartX;
+    const deltaY = endY - touchStartY;
+    const absX = Math.abs(deltaX);
+    const absY = Math.abs(deltaY);
+
+    if (Math.max(absX, absY) < minSwipeDistance) {
+      return;
+    }
+
+    if (!gameLoop) {
+      startGame();
+    }
+
+    if (absX > absY) {
+      setDirection(deltaX > 0 ? 1 : -1, 0);
+      return;
+    }
+
+    setDirection(0, deltaY > 0 ? 1 : -1);
+  }
+
+  if ("PointerEvent" in window) {
+    canvas.addEventListener("pointerdown", (event) => {
+      if (event.pointerType !== "touch") {
+        return;
+      }
+
+      activePointerId = event.pointerId;
+      touchStartX = event.clientX;
+      touchStartY = event.clientY;
+    });
+
+    canvas.addEventListener("pointerup", (event) => {
+      if (event.pointerType !== "touch" || event.pointerId !== activePointerId) {
+        return;
+      }
+
+      handleSwipeEnd(event.clientX, event.clientY);
+      activePointerId = -1;
+    });
+
+    canvas.addEventListener("pointercancel", (event) => {
+      if (event.pointerId === activePointerId) {
+        activePointerId = -1;
+      }
+    });
+  } else {
+    canvas.addEventListener(
+      "touchstart",
+      (event) => {
+        const touch = event.changedTouches[0];
+        if (!touch) {
+          return;
+        }
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+      },
+      { passive: true },
+    );
+
+    canvas.addEventListener(
+      "touchend",
+      (event) => {
+        const touch = event.changedTouches[0];
+        if (!touch) {
+          return;
+        }
+        handleSwipeEnd(touch.clientX, touch.clientY);
+      },
+      { passive: true },
+    );
+  }
+
+  statusEl.textContent = "Ready";
+  render();
+</script>
