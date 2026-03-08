@@ -1,0 +1,95 @@
+---
+import Header from "../layouts/Header.astro";
+---
+
+<Header>
+  <main class="px-4 py-8">
+    <section class="mx-auto max-w-2xl rounded-box border-2 border-solid border-base-content/60 bg-base-100 p-6">
+      <h1 class="text-3xl font-bold text-base-content">Theme switcher</h1>
+      <p class="mt-2 text-base-content/75">
+        Pick your preferred color mode. The setting is saved to your browser.
+      </p>
+
+      <div class="mt-6 grid gap-3 sm:grid-cols-3">
+        <button id="mode-system" class="btn" data-theme-mode-button="system">
+          System
+        </button>
+        <button id="mode-light" class="btn" data-theme-mode-button="light">
+          Light
+        </button>
+        <button id="mode-dark" class="btn" data-theme-mode-button="dark">
+          Dark
+        </button>
+      </div>
+
+      <p class="mt-4 text-sm text-base-content/70">
+        Active mode: <span id="active-mode" class="font-semibold">System</span>
+      </p>
+    </section>
+  </main>
+</Header>
+
+<script>
+  const modeButtons = document.querySelectorAll("[data-theme-mode-button]");
+  const activeModeEl = document.getElementById("active-mode");
+  const validModes = ["system", "light", "dark"];
+
+  if (!(activeModeEl instanceof HTMLElement)) {
+    throw new Error("Active mode element not found");
+  }
+
+  function getStoredMode() {
+    const stored = localStorage.getItem("theme");
+    return validModes.includes(stored) ? stored : "system";
+  }
+
+  function updateModeLabel(mode) {
+    activeModeEl.textContent = mode[0].toUpperCase() + mode.slice(1);
+  }
+
+  function updateButtonState(mode) {
+    modeButtons.forEach((button) => {
+      if (!(button instanceof HTMLButtonElement)) {
+        return;
+      }
+
+      const isActive = button.dataset.themeModeButton === mode;
+      button.classList.toggle("btn-primary", isActive);
+      button.classList.toggle("btn-outline", !isActive);
+    });
+  }
+
+  function setThemeMode(mode) {
+    if (!validModes.includes(mode)) {
+      return;
+    }
+
+    const matchingTab = document.querySelector(
+      `input[name="theme_tabs"][value="${mode}"]`,
+    );
+
+    if (matchingTab instanceof HTMLInputElement) {
+      matchingTab.checked = true;
+      matchingTab.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+
+    localStorage.setItem("theme", mode);
+    updateModeLabel(mode);
+    updateButtonState(mode);
+  }
+
+  modeButtons.forEach((button) => {
+    if (!(button instanceof HTMLButtonElement)) {
+      return;
+    }
+
+    button.addEventListener("click", () => {
+      const mode = button.dataset.themeModeButton;
+      setThemeMode(mode || "system");
+    });
+  });
+
+  const currentMode = getStoredMode();
+  updateModeLabel(currentMode);
+  updateButtonState(currentMode);
+</script>

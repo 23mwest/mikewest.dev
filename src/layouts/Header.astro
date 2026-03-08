@@ -18,11 +18,30 @@ const navItems = [
   { href: "/", label: "Resume", paths: ["/"] },
   { href: "/apps", label: "Apps", paths: ["/apps"] },
   { href: "/links", label: "Links", paths: ["/links"] },
-  { href: "/snake", label: "Snake", paths: ["/snake"] },
+  {
+    label: "Fun",
+    children: [
+      { href: "/snake", label: "Snake", paths: ["/snake"] },
+      {
+        href: "/theme-switcher",
+        label: "Theme switcher",
+        paths: ["/theme-switcher"],
+      },
+    ],
+  },
 ];
 
-const isActivePath = (paths) =>
+const isActivePath = (paths = []) =>
   paths.some((path) => normalizePath(path) === currentPath);
+
+const isNavItemActive = (item) => {
+  if (item.children) {
+    return item.children.some((child) => isNavItemActive(child));
+  }
+
+  const paths = item.paths ?? (item.href ? [item.href] : []);
+  return isActivePath(paths);
+};
 ---
 
 <!doctype html>
@@ -199,23 +218,64 @@ const isActivePath = (paths) =>
           <div class="hidden flex-none lg:block">
             <ul class="menu menu-horizontal rounded-full">
               {
-                navItems.map((item) => (
-                  <li class="mr-1">
-                    <a
-                      href={item.href}
-                      class:list={[
-                        "text-xl rounded-full",
-                        isActivePath(item.paths) &&
-                          "text-primary bg-primary/15 rounded-full font-semibold",
-                      ]}
-                      aria-current={
-                        isActivePath(item.paths) ? "page" : undefined
-                      }
-                    >
-                      {item.label}
-                    </a>
-                  </li>
-                ))
+                navItems.map((item) =>
+                  item.children ? (
+                    <li class="mr-1">
+                      <div class="dropdown dropdown-hover dropdown-end rounded-full">
+                        <div
+                          tabindex="0"
+                          role="button"
+                          class:list={[
+                            "text-xl rounded-full",
+                            isNavItemActive(item) &&
+                              "text-primary bg-primary/15 rounded-full font-semibold",
+                          ]}
+                          aria-label={item.label}
+                        >
+                          {item.label}
+                        </div>
+                        <ul
+                          tabindex="0"
+                          class="dropdown-content menu right-0 left-auto z-[1] mt-2 w-56 rounded-box border border-base-content/15 bg-base-200 p-2 shadow-lg"
+                        >
+                          {item.children.map((child) => (
+                            <li>
+                              <a
+                                href={child.href}
+                                class:list={[
+                                  "rounded-box",
+                                  isNavItemActive(child) &&
+                                    "text-primary bg-primary/15 font-semibold",
+                                ]}
+                                aria-current={
+                                  isNavItemActive(child) ? "page" : undefined
+                                }
+                              >
+                                {child.label}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </li>
+                  ) : (
+                    <li class="mr-1">
+                      <a
+                        href={item.href}
+                        class:list={[
+                          "text-xl rounded-full",
+                          isNavItemActive(item) &&
+                            "text-primary bg-primary/15 rounded-full font-semibold",
+                        ]}
+                        aria-current={
+                          isNavItemActive(item) ? "page" : undefined
+                        }
+                      >
+                        {item.label}
+                      </a>
+                    </li>
+                  ),
+                )
               }
             </ul>
           </div>
@@ -232,21 +292,56 @@ const isActivePath = (paths) =>
           class="drawer-overlay"></label>
         <ul class="menu bg-base-300 min-h-full w-80 p-4">
           {
-            navItems.map((item) => (
-              <li class="mb-2">
-                <a
-                  class:list={[
-                    "text-xl rounded-full",
-                    isActivePath(item.paths) &&
-                      "text-primary bg-primary/15 rounded-full font-semibold",
-                  ]}
-                  href={item.href}
-                  aria-current={isActivePath(item.paths) ? "page" : undefined}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))
+            navItems.map((item) =>
+              item.children ? (
+                <li class="mb-2">
+                  <details open={isNavItemActive(item)}>
+                    <summary
+                      class:list={[
+                        "text-xl rounded-full",
+                        isNavItemActive(item) &&
+                          "text-primary bg-primary/15 rounded-full font-semibold",
+                      ]}
+                    >
+                      {item.label}
+                    </summary>
+                    <ul class="mt-2">
+                      {item.children.map((child) => (
+                        <li>
+                          <a
+                            href={child.href}
+                            class:list={[
+                              "rounded-box",
+                              isNavItemActive(child) &&
+                                "text-primary bg-primary/15 font-semibold",
+                            ]}
+                            aria-current={
+                              isNavItemActive(child) ? "page" : undefined
+                            }
+                          >
+                            {child.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+                </li>
+              ) : (
+                <li class="mb-2">
+                  <a
+                    class:list={[
+                      "text-xl rounded-full",
+                      isNavItemActive(item) &&
+                        "text-primary bg-primary/15 rounded-full font-semibold",
+                    ]}
+                    href={item.href}
+                    aria-current={isNavItemActive(item) ? "page" : undefined}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ),
+            )
           }
         </ul>
       </div>
