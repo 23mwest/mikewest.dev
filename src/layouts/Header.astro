@@ -18,17 +18,17 @@ const navItems = [
   { href: "/", label: "Resume", paths: ["/"] },
   { href: "/apps", label: "Apps", paths: ["/apps"] },
   { href: "/links", label: "Links", paths: ["/links"] },
-  {
-    label: "Fun",
-    children: [
-      { href: "/snake", label: "Snake", paths: ["/snake"] },
-      {
-        href: "/theme-switcher",
-        label: "Theme switcher",
-        paths: ["/theme-switcher"],
-      },
-    ],
-  },
+  // {
+  //   label: "Fun",
+  //   children: [
+  //     { href: "/snake", label: "Snake", paths: ["/snake"] },
+  //     {
+  //       href: "/theme-switcher",
+  //       label: "Theme switcher",
+  //       paths: ["/theme-switcher"],
+  //     },
+  //   ],
+  // },
 ];
 
 const isActivePath = (paths = []) =>
@@ -58,18 +58,67 @@ const isNavItemActive = (item) => {
     />
     <script is:inline>
       (() => {
-        const storedTheme = localStorage.getItem("theme");
-        const mode =
-          storedTheme === "light" ||
-          storedTheme === "dark" ||
-          storedTheme === "system"
-            ? storedTheme
+        const mode = localStorage.getItem("theme");
+        const preferredMode =
+          mode === "light" || mode === "dark" || mode === "system"
+            ? mode
             : "system";
+        const daisyThemes = [
+          "light",
+          "dark",
+          "cupcake",
+          "bumblebee",
+          "emerald",
+          "corporate",
+          "synthwave",
+          "retro",
+          "cyberpunk",
+          "valentine",
+          "halloween",
+          "garden",
+          "forest",
+          "aqua",
+          "lofi",
+          "pastel",
+          "fantasy",
+          "wireframe",
+          "black",
+          "luxury",
+          "dracula",
+          "cmyk",
+          "autumn",
+          "business",
+          "acid",
+          "lemonade",
+          "night",
+          "coffee",
+          "winter",
+          "dim",
+          "nord",
+          "sunset",
+          "caramellatte",
+          "abyss",
+          "silk",
+        ];
+        const lightTheme = localStorage.getItem("themeLight");
+        const darkTheme = localStorage.getItem("themeDark");
+        const selectedLightTheme = daisyThemes.includes(lightTheme)
+          ? lightTheme
+          : "light";
+        const selectedDarkTheme = daisyThemes.includes(darkTheme)
+          ? darkTheme
+          : "night";
         const prefersDark = window.matchMedia(
           "(prefers-color-scheme: dark)",
         ).matches;
-        const isDark = mode === "system" ? prefersDark : mode === "dark";
-        document.documentElement.dataset.theme = isDark ? "night" : "light";
+        const isDark =
+          preferredMode === "system" ? prefersDark : preferredMode === "dark";
+        document.documentElement.dataset.theme = isDark
+          ? selectedDarkTheme
+          : selectedLightTheme;
+        document.documentElement.dataset.themeMode = preferredMode;
+        document.documentElement.dataset.themeLight = selectedLightTheme;
+        document.documentElement.dataset.themeDark = selectedDarkTheme;
         document.documentElement.classList.toggle("dark", isDark);
       })();
     </script>
