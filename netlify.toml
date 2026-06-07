@@ -1,0 +1,9 @@
+[build]
+  command = "astro build"
+  publish = "dist"
+
+[context.production]
+  command = "astro build"
+
+[context."dev"]
+  command = "astro build"
