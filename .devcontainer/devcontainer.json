@@ -1,0 +1,17 @@
+{
+  "name": "claude-code-env",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:20",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "postCreateCommand": "npm install && npm install -g netlify-cli && claude login",
+  "customizations": {
+    "vscode": {
+      "extensions": ["anthropic.claude-code"]
+    }
+  },
+  "remoteEnv": {
+    "NOTION_TOKEN": "${localEnv:NOTION_TOKEN}",
+    "NETLIFY": "${localEnv:NETLIFY}"
+  }
+}
