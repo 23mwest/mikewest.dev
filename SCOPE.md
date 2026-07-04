@@ -31,4 +31,4 @@ No test runner is configured yet. Verification today is `yarn build` plus a manu
 - Package manager is **yarn**.
 - Vanilla JS only — no React/Vue/Svelte/Alpine/htmx or state libraries.
 - Ask before adding any dependency or heavy asset.
-- Nested `SCOPE.md` files scope subtrees: `src/web/`, `src/api/` (placeholder), `src/mobile/` (placeholder). Otherwise follow repo [CLAUDE.md](CLAUDE.md).
+- This single root `SCOPE.md` covers the whole repo — there are no nested scope files. Otherwise follow repo [CLAUDE.md](CLAUDE.md).
