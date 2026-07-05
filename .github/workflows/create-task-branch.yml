@@ -1,0 +1,92 @@
+name: Create Task Branch
+
+# Part 14 (Trigger Flow): derives a branch name from the Notion task,
+# creates it off latest main, and pushes it so it exists remotely
+# before a Codespace is opened on it.
+
+on:
+  workflow_dispatch:
+    inputs:
+      task_id:
+        description: "Notion task ID (e.g. TSK-42)"
+        required: true
+        type: string
+      task_title:
+        description: "Notion task title (used to build the branch slug)"
+        required: true
+        type: string
+      branch_type:
+        description: "Conventional-commit-style prefix for the branch"
+        required: false
+        type: choice
+        options: [feat, fix, chore, refactor, test, docs]
+        default: feat
+
+permissions:
+  contents: write
+
+jobs:
+  create-branch:
+    runs-on: ubuntu-latest
+    outputs:
+      branch_name: ${{ steps.branch.outputs.name }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build slug and branch name
+        id: branch
+        env:
+          TASK_ID: ${{ inputs.task_id }}
+          TASK_TITLE: ${{ inputs.task_title }}
+          BRANCH_TYPE: ${{ inputs.branch_type }}
+        run: |
+          set -euo pipefail
+
+          # lowercase, strip anything that isn't a-z/0-9, collapse runs of
+          # separators into single hyphens, trim leading/trailing hyphens
+          slugify() {
+            echo "$1" \
+              | tr '[:upper:]' '[:lower:]' \
+              | sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//; s/-{2,}/-/g'
+          }
+
+          TASK_SLUG=$(slugify "$TASK_ID")
+          TITLE_SLUG=$(slugify "$TASK_TITLE" | cut -c1-50 | sed -E 's/-+$//')
+
+          if [ -z "$TITLE_SLUG" ]; then
+            echo "Task title produced an empty slug, refusing to create a branch." >&2
+            exit 1
+          fi
+
+          BRANCH="${BRANCH_TYPE}/${TASK_SLUG}-${TITLE_SLUG}"
+
+          echo "name=$BRANCH" >> "$GITHUB_OUTPUT"
+          echo "Resolved branch name: $BRANCH"
+
+      - name: Create branch off main (or reuse if it already exists)
+        env:
+          BRANCH: ${{ steps.branch.outputs.name }}
+        run: |
+          set -euo pipefail
+          git fetch origin main
+
+          if git ls-remote --exit-code --heads origin "$BRANCH" > /dev/null 2>&1; then
+            echo "Branch $BRANCH already exists on origin — reusing it (likely a retry of a failed run)."
+          else
+            git checkout -b "$BRANCH" origin/main
+            git push origin "$BRANCH"
+            echo "Created and pushed $BRANCH"
+          fi
+
+      - name: Write summary
+        env:
+          BRANCH: ${{ steps.branch.outputs.name }}
+        run: |
+          {
+            echo "### Branch ready"
+            echo "\`$BRANCH\`"
+            echo ""
+            echo "Next: open a Codespace with \`ref: $BRANCH\` (e.g. \`gh codespace create -b $BRANCH\`)"
+          } >> "$GITHUB_STEP_SUMMARY"
