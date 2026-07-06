@@ -4,7 +4,7 @@ import Header from "../layouts/Header.astro";
 
 <Header>
   <!-- HERO -->
-  <section class="px-6 pt-20 pb-14">
+  <section class="px-6 pt-12 pb-12">
     <div class="max-w-4xl mx-auto">
       <span
         class="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary"
@@ -261,7 +261,7 @@ import Header from "../layouts/Header.astro";
       <!-- TODO: replace YOUR_FORM_ID with the real Formspree form ID before this goes live -->
       <form action="https://formspree.io/f/xzdlwrey" method="POST" class="max-w-2xl">
         <div class="grid gap-4 sm:grid-cols-2">
-          <label class="form-control w-full">
+          <label class="block w-full">
             <span class="mb-1.5 block text-sm font-semibold">Name</span>
             <input
               type="text"
@@ -271,7 +271,7 @@ import Header from "../layouts/Header.astro";
               class="input input-bordered w-full"
             />
           </label>
-          <label class="form-control w-full">
+          <label class="block w-full">
             <span class="mb-1.5 block text-sm font-semibold">Email</span>
             <input
               type="email"
@@ -283,7 +283,7 @@ import Header from "../layouts/Header.astro";
           </label>
         </div>
 
-        <label class="form-control mt-4 w-full">
+        <label class="block mt-4 w-full">
           <span class="mb-1.5 block text-sm font-semibold"
             >Company / project <span class="font-normal text-base-content/50"
               >(optional)</span
@@ -292,7 +292,7 @@ import Header from "../layouts/Header.astro";
           <input type="text" name="company" class="input input-bordered w-full" />
         </label>
 
-        <label class="form-control mt-4 w-full">
+        <label class="block mt-4 w-full">
           <span class="mb-1.5 block text-sm font-semibold">What do you need?</span>
           <select name="project_type" required class="select select-bordered w-full">
             <option value="" disabled selected>Choose one…</option>
@@ -307,7 +307,7 @@ import Header from "../layouts/Header.astro";
         </label>
 
         <div class="mt-4 grid gap-4 sm:grid-cols-2">
-          <label class="form-control w-full">
+          <label class="block w-full">
             <span class="mb-1.5 block text-sm font-semibold"
               >Budget range <span class="font-normal text-base-content/50"
                 >(optional)</span
@@ -322,7 +322,7 @@ import Header from "../layouts/Header.astro";
               <option>Not sure yet</option>
             </select>
           </label>
-          <label class="form-control w-full">
+          <label class="block w-full">
             <span class="mb-1.5 block text-sm font-semibold">Timeline</span>
             <select name="timeline" required class="select select-bordered w-full">
               <option value="" disabled selected>Choose one…</option>
@@ -334,7 +334,7 @@ import Header from "../layouts/Header.astro";
           </label>
         </div>
 
-        <label class="form-control mt-4 w-full">
+        <label class="block mt-4 w-full">
           <span class="mb-1.5 block text-sm font-semibold"
             >The problem, in your own words</span
           >
@@ -345,7 +345,7 @@ import Header from "../layouts/Header.astro";
             class="textarea textarea-bordered min-h-32 w-full"></textarea>
         </label>
 
-        <button type="submit" class="btn btn-primary mt-6">Send it my way</button>
+        <button type="submit" class="btn btn-primary mt-6">Send</button>
         <p class="mt-4 text-sm text-base-content/50">
           Prefer email? <a href="mailto:23mwest@gmail.com" class="text-primary"
             >23mwest@gmail.com</a
