@@ -3,210 +3,377 @@ import Header from "../layouts/Header.astro";
 ---
 
 <Header>
-  <div class="flex w-full justify-center">
-    <section
-      class="max-w-4xl mx-auto px-6 py-12
-               text-base-content"
-    >
-      <!-- Summary -->
-      <div class="mb-6">
-        <h2 class="text-2xl font-semibold mb-3 border-b
-                pb-1">
-          Senior Frontend Software Engineer in Pittsburgh, PA
-        </h2>
-        <p class="leading-relaxed text-base-content/80">
-          8+ years building web and mobile products from early-stage MVPs to
-          platforms with tens of thousands of active users. Specializing in
-          React, React Native, and Next.js, with full-stack support across
-          frontend architecture, state management, serverless infrastructure,
-          and CI/CD automation.
-        </p>
+  <!-- HERO -->
+  <section class="px-6 pt-20 pb-14">
+    <div class="max-w-4xl mx-auto">
+      <span
+        class="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary"
+      >
+        <span class="h-2 w-2 animate-pulse rounded-full bg-primary"></span>
+        Taking on select projects
+      </span>
+
+      <h1
+        class="mt-6 max-w-3xl text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl"
+      >
+        I build web &amp; mobile products, and <em
+          class="text-primary not-italic">everything it takes</em
+        > to ship them.
+      </h1>
+
+      <p class="mt-5 max-w-2xl text-lg text-base-content/70">
+        Apps, the systems around them, and the release pipelines that keep them
+        moving. I've taken products from empty repo to 50,000+ monthly active
+        users, and I'm deliberate about what I take on next. Right now, that
+        means building for a small number of clients, and keeping the bar high
+        for my next full-time role.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3.5">
+        <a href="#work-with-me" class="btn btn-primary">Start a project</a>
+        <a
+          href="/apps"
+          class="btn border-base-300 bg-base-100 font-semibold text-base-content shadow-none hover:border-base-content/40"
+          >See what I've shipped</a
+        >
       </div>
 
-      <!-- Experience -->
-      <div class="mb-6">
-        <h2 class="text-xl font-semibold mb-6 border-b
-                pb-1">
-          <span class="inline-flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="h-5 w-5"
-              aria-hidden="true"
+      <div class="mt-9 grid grid-cols-2 gap-4 sm:grid-cols-3">
+        <div>
+          <strong class="block text-3xl font-bold tracking-tight">0 → 1</strong
+          >
+          <span class="text-sm text-base-content/50"
+            >Taking projects from concept to launch</span
+          >
+        </div>
+        <div>
+          <strong class="block text-3xl font-bold tracking-tight">3x</strong>
+          <span class="text-sm text-base-content/50"
+            >your release frequency by working lean</span
+          >
+        </div>
+        <div>
+          <strong class="block text-3xl font-bold tracking-tight">8+ yrs</strong>
+          <span class="text-sm text-base-content/50"
+            >across Web, Mobile, and IoT</span
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW I WORK -->
+  <section class="bg-base-300 px-6 py-14">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-semibold tracking-tight">How I work</h2>
+      <p class="mt-2 mb-8 max-w-xl text-base-content/70">
+        Three things you'll notice in the first two weeks of working with me.
+      </p>
+      <div class="grid gap-4 md:grid-cols-3">
+        <div class="card border border-base-300 bg-base-100 shadow-sm">
+          <div class="card-body p-6">
+            <span class="text-xs font-bold tracking-wider text-primary">01</span>
+            <h3 class="text-lg font-semibold">Small releases, real conversations</h3>
+            <p class="text-sm text-base-content/70">
+              I ship in small increments, early and often, and I talk directly
+              with the people the software is for. Scope gets refined in the
+              open, not in a backlog. That's the agile manifesto as written, not
+              agile as ceremony. It's rarer than it should be, and it's how
+              products actually get better every week.
+            </p>
+          </div>
+        </div>
+        <div class="card border border-base-300 bg-base-100 shadow-sm">
+          <div class="card-body p-6">
+            <span class="text-xs font-bold tracking-wider text-primary">02</span>
+            <h3 class="text-lg font-semibold">Problems don't stay in my lane</h3>
+            <p class="text-sm text-base-content/70">
+              Every digital business is in some fashion a software business, which means most
+              problems — product, marketing, operations, revenue — have a
+              software-shaped piece. When something is negatively impacting the business,
+              I treat fixing it as part of the job, using whatever leverage I
+              have from wherever I sit.
+            </p>
+          </div>
+        </div>
+        <div class="card border border-base-300 bg-base-100 shadow-sm">
+          <div class="card-body p-6">
+            <span class="text-xs font-bold tracking-wider text-primary">03</span>
+            <h3 class="text-lg font-semibold">Fast ramp, any stack</h3>
+            <p class="text-sm text-base-content/70">
+              My depth is React, React Native, Next.js, and AWS, but I've
+              delivered across data visualization, DevOps automation, backend
+              systems, and rapid prototyping. A new stack is a short ramp, not a
+              blocker. I learn what the problem needs and get to shipping.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="px-6 py-14">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-semibold tracking-tight">What I can do for you</h2>
+      <p class="mt-2 mb-8 max-w-xl text-base-content/70">
+        Engagements I'm currently taking, from a few weeks to a few months.
+      </p>
+      <div class="grid gap-3.5 sm:grid-cols-2">
+        <div
+          class="flex items-start gap-3.5 rounded-box border border-base-300 bg-base-100 p-5"
+        >
+          <span class="font-extrabold leading-relaxed text-primary">→</span>
+          <div>
+            <strong class="block">MVP &amp; new product builds</strong>
+            <span class="text-sm text-base-content/70"
+              >From idea to a live, usable product: web, mobile, or both — with
+              the infrastructure to grow.</span
             >
-              <rect x="3" y="7" width="18" height="13" rx="2"></rect>
-              <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-              <path d="M3 13h18"></path>
-            </svg>
-            Recent Work
-          </span>
-        </h2>
-
-        <!-- Tactacam -->
-        <div class="mb-8">
-          <div class="flex justify-between flex-wrap">
-            <h3 class="font-semibold text-lg text-base-content">Tactacam</h3>
-            <span class="text-sm text-base-content/60"> 2022–2026 </span>
           </div>
-          <ul
-            class="list-disc list-inside mt-3 space-y-2
-                 text-base-content/80"
-          >
-            <li>
-              Grew from engineer to lead developer on a React Native + Next.js
-              platform.
-            </li>
-            <li>
-              Scaled from zero to 50,000 monthly active users in under two
-              years.
-            </li>
-            <li>Led a team of 5 and shipped monetization features.</li>
-            <li>
-              Owned CI/CD infrastructure, increasing release frequency by
-              roughly 3x.
-            </li>
-          </ul>
         </div>
-
-        <!-- SAE -->
-        <div class="mb-8">
-          <div class="flex justify-between flex-wrap">
-            <h3 class="font-semibold text-lg text-base-content">
-              SAE International
-            </h3>
-            <span class="text-sm text-base-content/60"> 2021 </span>
-          </div>
-          <ul
-            class="list-disc list-inside mt-3 space-y-2
-                 text-base-content/80"
-          >
-            <li>
-              Built complex onboarding flows in Angular for a core revenue
-              product.
-            </li>
-            <li>
-              Contributed shared UI components consumed across 10+ internal
-              applications.
-            </li>
-          </ul>
-        </div>
-
-        <!-- DDI + Federated -->
-        <div class="mb-8">
-          <div class="flex justify-between flex-wrap">
-            <h3 class="font-semibold text-lg text-base-content">
-              DDI & Federated Investors
-            </h3>
-            <span class="text-sm text-base-content/60"> 2017–2020 </span>
-          </div>
-          <ul
-            class="list-disc list-inside mt-3 space-y-2
-                 text-base-content/80"
-          >
-            <li>
-              Roles spanning data visualization, mobile development, DevOps
-              automation, and rapid prototyping.
-            </li>
-            <li>
-              Worked across frontend and backend systems with production
-              delivery ownership.
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Skills -->
-      <div class="mb-6">
-        <h2 class="text-xl font-semibold mb-4 border-b
-                pb-1">
-          <span class="inline-flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="h-5 w-5"
-              aria-hidden="true"
+        <div
+          class="flex items-start gap-3.5 rounded-box border border-base-300 bg-base-100 p-5"
+        >
+          <span class="font-extrabold leading-relaxed text-primary">→</span>
+          <div>
+            <strong class="block">Mobile apps (React Native / Expo)</strong>
+            <span class="text-sm text-base-content/70"
+              >iOS + Android from one codebase, through app-store review and into
+              users' hands.</span
             >
-              <path
-                d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.2 2.2-2.6-.6-.6-2.6 2.4-2.6Z"
-              ></path>
-            </svg>
-            Skills & Tools
-          </span>
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-          <div>
-            <p class="font-medium text-base-content mb-1">Languages</p>
-            <p class="text-base-content/80">JavaScript, TypeScript, SQL</p>
           </div>
+        </div>
+        <div
+          class="flex items-start gap-3.5 rounded-box border border-base-300 bg-base-100 p-5"
+        >
+          <span class="font-extrabold leading-relaxed text-primary">→</span>
           <div>
-            <p class="font-medium text-base-content mb-1">Frontend</p>
-            <p class="text-base-content/80">
-              React, React Native, Next.js, Angular, Expo, Tailwind, TanStack,
-              GraphQL
-            </p>
+            <strong class="block">Rescue &amp; accelerate existing products</strong>
+            <span class="text-sm text-base-content/70"
+              >Unstick a stalled codebase, stabilize what's fragile, and get the
+              release cadence back.</span
+            >
           </div>
+        </div>
+        <div
+          class="flex items-start gap-3.5 rounded-box border border-base-300 bg-base-100 p-5"
+        >
+          <span class="font-extrabold leading-relaxed text-primary">→</span>
           <div>
-            <p class="font-medium text-base-content mb-1">Cloud</p>
-            <p class="text-base-content/80">
-              AWS (CDK, Lambda, API Gateway, S3, SNS)
-            </p>
+            <strong class="block">CI/CD &amp; delivery infrastructure</strong>
+            <span class="text-sm text-base-content/70"
+              >Pipelines, automation, and cloud setup (AWS) so shipping becomes
+              routine instead of an event.</span
+            >
           </div>
+        </div>
+        <div
+          class="flex items-start gap-3.5 rounded-box border border-base-300 bg-base-100 p-5"
+        >
+          <span class="font-extrabold leading-relaxed text-primary">→</span>
           <div>
-            <p class="font-medium text-base-content mb-1">DevOps</p>
-            <p class="text-base-content/80">
-              GitHub Actions, Expo EAS, CodeMagic, AWS Amplify, Azure DevOps
-            </p>
+            <strong class="block">Fractional technical lead</strong>
+            <span class="text-sm text-base-content/70"
+              >Direction, code review, and delivery discipline for a small team —
+              without a full-time hire.</span
+            >
           </div>
+        </div>
+        <div
+          class="flex items-start gap-3.5 rounded-box border border-base-300 bg-base-100 p-5"
+        >
+          <span class="font-extrabold leading-relaxed text-primary">→</span>
           <div>
-            <p class="font-medium text-base-content mb-1">Testing</p>
-            <p class="text-base-content/80">Jest, React Testing Library</p>
-          </div>
-          <div>
-            <p class="font-medium text-base-content mb-1">Analytics</p>
-            <p class="text-base-content/80">Google Analytics, Survicate</p>
+            <strong class="block">Not sure it fits a box?</strong>
+            <span class="text-sm text-base-content/70"
+              >Bring me the problem. If there's a technical path to solving it,
+              I'll find it — or tell you plainly if I'm not the right person.</span
+            >
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Education -->
+  <!-- TRACK RECORD -->
+  <section class="bg-base-300 px-6 py-14">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-semibold tracking-tight">Track record</h2>
+      <p class="mt-2 mb-8 max-w-xl text-base-content/70">
+        The short version. The <a href="/apps" class="text-primary">apps page</a>
+        has the products themselves.
+      </p>
       <div>
-        <h2 class="text-xl font-semibold mb-4 border-b
-                pb-1">
-          <span class="inline-flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="h-5 w-5"
-              aria-hidden="true"
-            >
-              <path d="m2 8 10-5 10 5-10 5L2 8Z"></path>
-              <path d="M6 10.5V15a6 6 0 0 0 12 0v-4.5"></path>
-            </svg>
-            Education
-          </span>
-        </h2>
-        <p class="font-semibold text-base-content">
-          B.S. Computer Engineering – University of Pittsburgh
-        </p>
-        <p class="text-sm text-base-content/70 mt-1">
-          Minor: Industrial Engineering
-        </p>
+        <div class="relative border-l-2 border-base-content/15 pb-7 pl-6">
+          <span
+            class="absolute -left-[5px] top-2.5 h-2.5 w-2.5 rounded-full bg-primary"
+          ></span>
+          <h3 class="text-lg font-semibold">Tactacam</h3>
+          <p class="mb-1.5 text-sm text-base-content/50">
+            2022–2026 · Engineer → Lead Developer
+          </p>
+          <p class="max-w-2xl text-sm text-base-content/70">
+            Grew a React Native + Next.js platform from zero to 50,000 monthly
+            active users in under two years. Led a team of five, shipped
+            monetization features, and owned CI/CD — roughly tripling release
+            frequency.
+          </p>
+        </div>
+        <div class="relative border-l-2 border-base-content/15 pb-7 pl-6">
+          <span
+            class="absolute -left-[5px] top-2.5 h-2.5 w-2.5 rounded-full bg-primary"
+          ></span>
+          <h3 class="text-lg font-semibold">SAE International</h3>
+          <p class="mb-1.5 text-sm text-base-content/50">2021</p>
+          <p class="max-w-2xl text-sm text-base-content/70">
+            Built complex onboarding flows in Angular for a core revenue product
+            and contributed shared UI components used across 10+ internal
+            applications.
+          </p>
+        </div>
+        <div class="relative border-l-2 border-base-content/15 pl-6">
+          <span
+            class="absolute -left-[5px] top-2.5 h-2.5 w-2.5 rounded-full bg-primary"
+          ></span>
+          <h3 class="text-lg font-semibold">DDI &amp; Federated Investors</h3>
+          <p class="mb-1.5 text-sm text-base-content/50">2017–2020</p>
+          <p class="max-w-2xl text-sm text-base-content/70">
+            Data visualization, mobile development, DevOps automation, and rapid
+            prototyping — frontend and backend, with production delivery
+            ownership throughout.
+          </p>
+        </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
+
+  <!-- WORK WITH ME -->
+  <section id="work-with-me" class="px-6 py-14">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-semibold tracking-tight">Work with me</h2>
+      <p class="mt-2 mb-8 max-w-xl text-base-content/70">
+        Tell me what you're trying to build or fix. I read every message and
+        reply within one business day — usually with a question or two,
+        sometimes with a sketch of how I'd approach it.
+      </p>
+
+      <!-- TODO: replace YOUR_FORM_ID with the real Formspree form ID before this goes live -->
+      <form action="https://formspree.io/f/xzdlwrey" method="POST" class="max-w-2xl">
+        <div class="grid gap-4 sm:grid-cols-2">
+          <label class="form-control w-full">
+            <span class="mb-1.5 block text-sm font-semibold">Name</span>
+            <input
+              type="text"
+              name="name"
+              required
+              autocomplete="name"
+              class="input input-bordered w-full"
+            />
+          </label>
+          <label class="form-control w-full">
+            <span class="mb-1.5 block text-sm font-semibold">Email</span>
+            <input
+              type="email"
+              name="email"
+              required
+              autocomplete="email"
+              class="input input-bordered w-full"
+            />
+          </label>
+        </div>
+
+        <label class="form-control mt-4 w-full">
+          <span class="mb-1.5 block text-sm font-semibold"
+            >Company / project <span class="font-normal text-base-content/50"
+              >(optional)</span
+            ></span
+          >
+          <input type="text" name="company" class="input input-bordered w-full" />
+        </label>
+
+        <label class="form-control mt-4 w-full">
+          <span class="mb-1.5 block text-sm font-semibold">What do you need?</span>
+          <select name="project_type" required class="select select-bordered w-full">
+            <option value="" disabled selected>Choose one…</option>
+            <option>New product / MVP</option>
+            <option>Mobile app (iOS + Android)</option>
+            <option>Help with an existing product</option>
+            <option>CI/CD &amp; infrastructure</option>
+            <option>Fractional technical lead</option>
+            <option>Full-time opportunity</option>
+            <option>Something else</option>
+          </select>
+        </label>
+
+        <div class="mt-4 grid gap-4 sm:grid-cols-2">
+          <label class="form-control w-full">
+            <span class="mb-1.5 block text-sm font-semibold"
+              >Budget range <span class="font-normal text-base-content/50"
+                >(optional)</span
+              ></span
+            >
+            <select name="budget" class="select select-bordered w-full">
+              <option value="" disabled selected>Choose one…</option>
+              <option>Under $5k</option>
+              <option>$5k – $15k</option>
+              <option>$15k – $50k</option>
+              <option>$50k+</option>
+              <option>Not sure yet</option>
+            </select>
+          </label>
+          <label class="form-control w-full">
+            <span class="mb-1.5 block text-sm font-semibold">Timeline</span>
+            <select name="timeline" required class="select select-bordered w-full">
+              <option value="" disabled selected>Choose one…</option>
+              <option>ASAP</option>
+              <option>Within 1–2 months</option>
+              <option>This quarter</option>
+              <option>Just exploring</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="form-control mt-4 w-full">
+          <span class="mb-1.5 block text-sm font-semibold"
+            >The problem, in your own words</span
+          >
+          <textarea
+            name="message"
+            required
+            placeholder="What are you building, what's in the way, and what does success look like?"
+            class="textarea textarea-bordered min-h-32 w-full"></textarea>
+        </label>
+
+        <button type="submit" class="btn btn-primary mt-6">Send it my way</button>
+        <p class="mt-4 text-sm text-base-content/50">
+          Prefer email? <a href="mailto:23mwest@gmail.com" class="text-primary"
+            >23mwest@gmail.com</a
+          > — same inbox, same response time.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-base-300 px-6 py-10">
+    <div
+      class="max-w-4xl mx-auto flex flex-wrap justify-between gap-4 text-sm text-base-content/50"
+    >
+      <span
+        >Michael J West · Pittsburgh, PA · B.S. Computer Engineering, University
+        of Pittsburgh</span
+      >
+      <span class="flex gap-4">
+        <a class="hover:text-base-content" href="https://github.com/23mwest"
+          >GitHub</a
+        >
+        <a
+          class="hover:text-base-content"
+          href="https://www.linkedin.com/in/michaeljosephwest">LinkedIn</a
+        >
+        <a class="hover:text-base-content" href="mailto:23mwest@gmail.com">Email</a>
+      </span>
+    </div>
+  </footer>
 </Header>

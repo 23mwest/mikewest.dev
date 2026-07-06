@@ -1,4 +1,77 @@
 @import "tailwindcss";
+
 @plugin "daisyui" {
-  themes: light --default, night --prefersdark;
+  themes: false;
+}
+
+/* Palette lifted from the Task-2 rebrand about.html. Warm off-white
+   surfaces, near-black text, burnt-orange accent. Kept as DaisyUI themes
+   so the existing light/dark switcher keeps working. */
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  color-scheme: light;
+
+  /* base-100 = raised surface (cards), base-200 = page, base-300 = alt/border */
+  --color-base-100: #ffffff;
+  --color-base-200: #fafaf8;
+  --color-base-300: #e7e6e1;
+  --color-base-content: #1a1a1a;
+
+  --color-primary: #c2410c;
+  --color-primary-content: #ffffff;
+  --color-secondary: #52525b;
+  --color-secondary-content: #ffffff;
+  --color-accent: #c2410c;
+  --color-accent-content: #ffffff;
+  --color-neutral: #1a1a1a;
+  --color-neutral-content: #fafaf8;
+
+  --color-info: #0284c7;
+  --color-info-content: #ffffff;
+  --color-success: #16a34a;
+  --color-success-content: #ffffff;
+  --color-warning: #b45309;
+  --color-warning-content: #ffffff;
+  --color-error: #dc2626;
+  --color-error-content: #ffffff;
+
+  --radius-selector: 2rem;
+  --radius-field: 0.625rem;
+  --radius-box: 0.75rem;
+  --border: 1px;
+}
+
+@plugin "daisyui/theme" {
+  name: "night";
+  prefersdark: true;
+  color-scheme: dark;
+
+  --color-base-100: #1c1c20;
+  --color-base-200: #101012;
+  --color-base-300: #2c2c32;
+  --color-base-content: #f2f2f0;
+
+  --color-primary: #fb923c;
+  --color-primary-content: #1a1000;
+  --color-secondary: #b3b3bc;
+  --color-secondary-content: #101012;
+  --color-accent: #fb923c;
+  --color-accent-content: #1a1000;
+  --color-neutral: #f2f2f0;
+  --color-neutral-content: #101012;
+
+  --color-info: #38bdf8;
+  --color-info-content: #06202b;
+  --color-success: #4ade80;
+  --color-success-content: #052e16;
+  --color-warning: #fbbf24;
+  --color-warning-content: #2a1c00;
+  --color-error: #f87171;
+  --color-error-content: #2a0606;
+
+  --radius-selector: 2rem;
+  --radius-field: 0.625rem;
+  --radius-box: 0.75rem;
+  --border: 1px;
 }
