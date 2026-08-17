@@ -16,21 +16,25 @@ import Header from "../layouts/Header.astro";
       <h1
         class="mt-6 max-w-3xl text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl"
       >
-        I build web &amp; mobile products, and <em
-          class="text-primary not-italic">everything it takes</em
-        > to ship them.
+        Cut your app down to the version that <em
+          class="text-primary not-italic">ships and makes money</em
+        >.
       </h1>
 
       <p class="mt-5 max-w-2xl text-lg text-base-content/70">
-        Apps, the systems around them, and the release pipelines that keep them
+        Most half-built apps aren't stuck because the founder can't code. They're
+        stuck because nobody has said which three features are the core and which
+        ones to cut. That's the call I make first, then I build the rest with you:
+        the app, the systems around it, and the release pipeline that keeps it
         moving. I've taken products from empty repo to 50,000+ monthly active
-        users, and I'm deliberate about what I take on next. Right now, that
-        means building for a small number of clients, and keeping the bar high
-        for my next full-time role.
+        users. I also take on broader product, mobile, and infrastructure work,
+        and am open to the right full-time opportunity.
       </p>
 
       <div class="mt-8 flex flex-wrap gap-3.5">
-        <a href="#work-with-me" class="btn btn-primary">Start a project</a>
+        <a href="#pricing" class="btn btn-primary"
+          >See Pricing</a
+        >
         <a
           href="/apps"
           class="btn border-base-300 bg-base-100 font-semibold text-base-content shadow-none hover:border-base-content/40"
@@ -88,11 +92,11 @@ import Header from "../layouts/Header.astro";
             <span class="text-xs font-bold tracking-wider text-primary">02</span>
             <h3 class="text-lg font-semibold">Problems don't stay in my lane</h3>
             <p class="text-sm text-base-content/70">
-              Every digital business is in some fashion a software business, which means most
-              problems — product, marketing, operations, revenue — have a
-              software-shaped piece. When something is negatively impacting the business,
-              I treat fixing it as part of the job, using whatever leverage I
-              have from wherever I sit.
+              Every digital business is in some fashion a software business, so
+              most problems (product, marketing, operations, revenue) have a
+              software-shaped piece. When something is hurting the business, I
+              treat fixing it as part of the job, with whatever I can move from
+              wherever I sit.
             </p>
           </div>
         </div>
@@ -112,12 +116,114 @@ import Header from "../layouts/Header.astro";
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section class="px-6 py-14">
+  <!-- WAYS TO WORK TOGETHER -->
+  <section id="pricing" class="px-6 py-14">
     <div class="max-w-4xl mx-auto">
-      <h2 class="text-2xl font-semibold tracking-tight">What I can do for you</h2>
+      <h2 class="text-2xl font-semibold tracking-tight">Ways to work together</h2>
       <p class="mt-2 mb-8 max-w-xl text-base-content/70">
-        Engagements I'm currently taking, from a few weeks to a few months.
+        Three ways in, smallest first. Each one stands on its own, and each one
+        sets up the next if it makes sense.
+      </p>
+      <div class="grid items-stretch gap-4 md:grid-cols-3">
+        <!-- Offering 1 -->
+        <div class="card flex flex-col border border-base-300 bg-base-100 shadow-sm">
+          <div class="card-body flex flex-col p-6">
+            <h3 class="text-lg font-semibold">Launch Readiness Review</h3>
+            <p class="mt-1 text-sm font-semibold text-primary">
+              From $750 <span class="font-normal text-base-content/50"
+                >· 3 business days</span
+              >
+            </p>
+            <p class="mt-3 text-sm font-semibold">
+              For a founder with a half-built app who isn't sure what's blocking
+              launch.
+            </p>
+            <p class="mt-2 text-sm text-base-content/70">
+              A 60-minute intake, a review of your code and product, then a
+              written plan: what's core, what to cut, and what's actually in the
+              way. Ends with a 45-minute findings call.
+            </p>
+            <a
+              href="https://cal.com/michael-j-west/launch-review"
+              target="_blank"
+              rel="noopener"
+              class="btn btn-primary btn-sm mt-5 self-start">Book a review</a
+            >
+          </div>
+        </div>
+
+        <!-- Offering 2 (flagship) -->
+        <div class="card flex flex-col border-2 border-primary bg-base-100 shadow-md">
+          <div class="card-body flex flex-col p-6">
+            <span
+              class="mb-1 inline-flex w-fit items-center rounded-full bg-primary/10 px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-primary"
+              >Most common starting point</span
+            >
+            <h3 class="text-lg font-semibold">Last-Mile Sprint</h3>
+            <p class="mt-1 text-sm font-semibold text-primary">
+              From $5,000 <span class="font-normal text-base-content/50"
+                >· about 2 weeks</span
+              >
+            </p>
+            <p class="mt-3 text-sm font-semibold">
+              For a founder whose revenue core is close but not shipping.
+            </p>
+            <p class="mt-2 text-sm text-base-content/70">
+              By an agreed date, your core revenue path is built and in
+              production or TestFlight. Up to two agreed outcomes, working PRs,
+              deploy docs, and two stakeholder reviews along the way.
+            </p>
+            <a
+              href="https://cal.com/michael-j-west/last-mile-sprint"
+              target="_blank"
+              rel="noopener"
+              class="btn btn-primary btn-sm mt-5 self-start">Start a sprint</a
+            >
+          </div>
+        </div>
+
+        <!-- Offering 3 -->
+        <div class="card flex flex-col border border-base-300 bg-base-100 shadow-sm">
+          <div class="card-body flex flex-col p-6">
+            <h3 class="text-lg font-semibold">Fractional Founding Engineer</h3>
+            <p class="mt-1 text-sm font-semibold text-primary">
+              From $3,000/mo <span class="font-normal text-base-content/50"
+                >· 8–12 hrs/week</span
+              >
+            </p>
+            <p class="mt-3 text-sm font-semibold">
+              For a founder who needs a senior engineer but can't yet justify a
+              full-time hire.
+            </p>
+            <p class="mt-2 text-sm text-base-content/70">
+              Part-time senior engineering: architecture calls, delivery
+              planning, code review, and hands-on build, with a written summary
+              every week. Reserved availability, no rigid lock-in.
+            </p>
+            <a
+              href="https://cal.com/michael-j-west/fractional-engineer"
+              target="_blank"
+              rel="noopener"
+              class="btn btn-primary btn-sm mt-5 self-start">Talk it through</a
+            >
+          </div>
+        </div>
+      </div>
+      <p class="mt-6 max-w-2xl text-sm text-base-content/50">
+        Every engagement starts with a signed agreement, a deposit, and a named
+        decision-maker. Unknown or legacy code is quoted after a Review, never
+        fixed-price sight-unseen.
+      </p>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="bg-base-300 px-6 py-14">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-semibold tracking-tight">Beyond the packaged work</h2>
+      <p class="mt-2 mb-8 max-w-xl text-base-content/70">
+        Not a founder cutting an app to its core? These are the broader
+        engagements I take, from a few weeks to a few months.
       </p>
       <div class="grid gap-3.5 sm:grid-cols-2">
         <div
@@ -197,7 +303,7 @@ import Header from "../layouts/Header.astro";
   </section>
 
   <!-- TRACK RECORD -->
-  <section class="bg-base-300 px-6 py-14">
+  <section class="px-6 py-14">
     <div class="max-w-4xl mx-auto">
       <h2 class="text-2xl font-semibold tracking-tight">Track record</h2>
       <p class="mt-2 mb-8 max-w-xl text-base-content/70">
@@ -205,6 +311,22 @@ import Header from "../layouts/Header.astro";
         has the products themselves.
       </p>
       <div>
+        <div class="relative border-l-2 border-base-content/15 pb-7 pl-6">
+          <span
+            class="absolute -left-[5px] top-2.5 h-2.5 w-2.5 rounded-full bg-primary"
+          ></span>
+          <h3 class="text-lg font-semibold">On-Point Instrument Sharpening</h3>
+          <p class="mb-1.5 text-sm text-base-content/50">
+            2026 · Full-stack developer (solo build)
+          </p>
+          <p class="max-w-2xl text-sm text-base-content/70">
+            Built a full-stack app end to end for a small business that sharpens
+            dental instruments: a public scheduling form for clients and an
+            admin portal to run the shop. Appointment scheduling and time
+            blocking, order tracking, two-way client messaging, and
+            testimonials. Shipping now.
+          </p>
+        </div>
         <div class="relative border-l-2 border-base-content/15 pb-7 pl-6">
           <span
             class="absolute -left-[5px] top-2.5 h-2.5 w-2.5 rounded-full bg-primary"
@@ -249,7 +371,7 @@ import Header from "../layouts/Header.astro";
   </section>
 
   <!-- WORK WITH ME -->
-  <section id="work-with-me" class="px-6 py-14">
+  <section id="work-with-me" class="bg-base-300 px-6 py-14">
     <div class="max-w-4xl mx-auto">
       <h2 class="text-2xl font-semibold tracking-tight">Work with me</h2>
       <p class="mt-2 mb-8 max-w-xl text-base-content/70">
@@ -258,7 +380,6 @@ import Header from "../layouts/Header.astro";
         sometimes with a sketch of how I'd approach it.
       </p>
 
-      <!-- TODO: replace YOUR_FORM_ID with the real Formspree form ID before this goes live -->
       <form action="https://formspree.io/f/xzdlwrey" method="POST" class="max-w-2xl">
         <div class="grid gap-4 sm:grid-cols-2">
           <label class="block w-full">
@@ -296,11 +417,13 @@ import Header from "../layouts/Header.astro";
           <span class="mb-1.5 block text-sm font-semibold">What do you need?</span>
           <select name="project_type" required class="select select-bordered w-full">
             <option value="" disabled selected>Choose one…</option>
+            <option>Launch Readiness Review</option>
+            <option>Last-Mile Sprint</option>
+            <option>Fractional Founding Engineer</option>
             <option>New product / MVP</option>
             <option>Mobile app (iOS + Android)</option>
             <option>Help with an existing product</option>
             <option>CI/CD &amp; infrastructure</option>
-            <option>Fractional technical lead</option>
             <option>Full-time opportunity</option>
             <option>Something else</option>
           </select>

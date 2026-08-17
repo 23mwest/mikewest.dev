@@ -9,6 +9,39 @@ import Header from "../layouts/Header.astro";
     >
       <div class="app-card-content">
         <h1 class="text-3xl font-bold text-base-content">
+          <a href="https://onpointinstrumentsharpening.com" target="blank"
+            >On-Point Instrument Sharpening</a
+          >
+        </h1>
+        <ul class="text-base-content/80">
+          <li>Appointment scheduling and time blocking</li>
+          <li>Order tracking</li>
+          <li>Two-way client messaging</li>
+          <li>Testimonials</li>
+        </ul>
+        <a
+          class="link link-hover"
+          href="https://onpointinstrumentsharpening.com"
+          target="blank">Web</a
+        >
+      </div>
+      <a
+        class="app-screenshot"
+        href="https://onpointinstrumentsharpening.com"
+        target="blank"
+      >
+        <img
+          src="/on-point-home-page.png"
+          alt="On-Point Instrument Sharpening homepage"
+          loading="lazy"
+        />
+      </a>
+    </div>
+    <div
+      class="app-card rounded-box bg-base-100 border-2 border-solid border-base-content/60"
+    >
+      <div class="app-card-content">
+        <h1 class="text-3xl font-bold text-base-content">
           <a href="https://www.sigsauer.com/sigconnect" target="blank"
             >SIG Connect</a
           >
@@ -113,5 +146,18 @@ import Header from "../layouts/Header.astro";
   .app-content a:hover {
     text-decoration: underline;
     text-decoration-color: currentColor;
+  }
+
+  .app-screenshot {
+    display: block;
+    width: 100%;
+    max-width: 560px;
+  }
+
+  .app-screenshot img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    border: 1px solid hsl(var(--bc) / 0.2);
   }
 </style>
