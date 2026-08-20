@@ -69,9 +69,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
-    if (currentMode === "system") {
-      applyTheme(currentMode);
-    }
-  });
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", () => {
+      if (currentMode === "system") {
+        applyTheme(currentMode);
+      }
+    });
 });

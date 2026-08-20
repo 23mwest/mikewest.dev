@@ -59,7 +59,7 @@ A task is done when all of the following are true:
 - [ ] `yarn build` succeeds
 - [ ] No unrelated files changed
 - [ ] No new dependency, framework, or large asset slipped in unintentionally
-- [ ] PR description explains *why*, not just *what*
+- [ ] PR description explains _why_, not just _what_
 - [ ] Notion ticket updated (if applicable)
 
 ## Code style

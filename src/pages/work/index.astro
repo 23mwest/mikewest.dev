@@ -1,0 +1,195 @@
+---
+import Header from "../../layouts/Header.astro";
+import { caseStudies } from "../../data/case-studies";
+import { apps } from "../../data/apps";
+
+const youTubeThumb = (embedUrl: string) => {
+  const id = embedUrl.split("/embed/")[1]?.split(/[?&]/)[0];
+  return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : null;
+};
+
+const cards = caseStudies.map((study) => {
+  const first = study.media[0];
+  const thumb =
+    first?.type === "image" ? first.src : first ? youTubeThumb(first.src) : null;
+  const thumbAlt =
+    first?.type === "image" ? first.alt : `${study.name} preview`;
+  return { study, thumb, thumbAlt };
+});
+---
+
+<Header
+  title="Work · Michael J West"
+  description="Selected work by Michael J West: full-stack and mobile products taken from MVP to real users, plus other shipped apps."
+>
+  <section class="px-6 pt-12 pb-16">
+    <div class="max-w-4xl mx-auto">
+      <!-- View toggle: two radios drive the pills and the panels via CSS. -->
+      <div role="radiogroup" aria-label="Choose what to show">
+        <input
+          id="tab-case-studies"
+          class="work-tab-input peer/cs"
+          type="radio"
+          name="work_view"
+          checked
+        />
+        <input
+          id="tab-apps"
+          class="work-tab-input peer/apps"
+          type="radio"
+          name="work_view"
+        />
+
+        <div class="flex flex-wrap gap-2">
+          <label
+            for="tab-case-studies"
+            class="cursor-pointer rounded-full border border-base-content/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-base-content/60 transition hover:border-base-content/30 hover:text-base-content peer-checked/cs:border-primary/30 peer-checked/cs:bg-primary/10 peer-checked/cs:text-primary"
+            >Case studies</label
+          >
+          <label
+            for="tab-apps"
+            class="cursor-pointer rounded-full border border-base-content/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-base-content/60 transition hover:border-base-content/30 hover:text-base-content peer-checked/apps:border-primary/30 peer-checked/apps:bg-primary/10 peer-checked/apps:text-primary"
+            >Apps</label
+          >
+        </div>
+
+        <h1
+          class="mt-6 max-w-3xl text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl"
+        >
+          Work I've shipped, start to finish.
+        </h1>
+        <p class="mt-5 max-w-2xl text-lg text-base-content/70">
+          A closer look at what I've built. Deep-dive case studies on the
+          products I've led, plus other apps I've shipped.
+        </p>
+
+        <!-- CASE STUDIES panel (default) -->
+        <div class="mt-10 peer-checked/apps:hidden">
+          <div class="grid gap-6 md:grid-cols-2">
+            {
+              cards.map(({ study, thumb, thumbAlt }) => (
+                <a
+                  href={`/work/${study.slug}`}
+                  class="group card overflow-hidden border border-base-300 bg-base-100 shadow-sm transition hover:border-base-content/40 hover:shadow-md"
+                >
+                  {thumb && (
+                    <figure class="aspect-[16/10] overflow-hidden bg-base-300">
+                      <img
+                        src={thumb}
+                        alt={thumbAlt}
+                        loading="lazy"
+                        class="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+                      />
+                    </figure>
+                  )}
+                  <div class="card-body p-6">
+                    <h2 class="text-xl font-semibold tracking-tight">
+                      {study.name}
+                    </h2>
+                    <p class="mt-1 text-sm text-base-content/70">
+                      {study.summary}
+                    </p>
+                    <div class="mt-3 flex flex-wrap gap-2">
+                      {study.facts.slice(0, 2).map((fact) => (
+                        <span class="rounded-full border border-base-300 bg-base-200 px-3 py-1 text-xs font-medium text-base-content/70">
+                          {fact.value}
+                        </span>
+                      ))}
+                    </div>
+                    <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                      Read the case study
+                      <span
+                        aria-hidden="true"
+                        class="transition group-hover:translate-x-0.5"
+                      >
+                        →
+                      </span>
+                    </span>
+                  </div>
+                </a>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- APPS panel -->
+        <div class="mt-10 hidden peer-checked/apps:block">
+          <div class="grid gap-6 md:grid-cols-2">
+            {
+              apps.map((app) => (
+                <div class="card overflow-hidden border border-base-300 bg-base-100 shadow-sm">
+                  <figure class="aspect-[16/10] overflow-hidden bg-base-300">
+                    <img
+                      src={youTubeThumb(app.video)}
+                      alt={`${app.name} preview`}
+                      loading="lazy"
+                      class="h-full w-full object-cover"
+                    />
+                  </figure>
+                  <div class="card-body p-6">
+                    <h2 class="text-xl font-semibold tracking-tight">
+                      {app.name}
+                    </h2>
+                    <p class="mt-1 text-sm text-base-content/70">
+                      {app.tagline}
+                    </p>
+                    <ul class="mt-3 flex flex-wrap gap-2">
+                      {app.features.map((feature) => (
+                        <li class="rounded-full border border-base-300 bg-base-200 px-3 py-1 text-xs font-medium text-base-content/70">
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                    <div class="mt-4 flex flex-wrap gap-x-4 gap-y-2">
+                      {app.links.map((link) => (
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener"
+                          class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
+                        >
+                          {link.label}
+                          <span aria-hidden="true">↗</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT CTA -->
+  <section class="bg-base-300 px-6 py-14">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-2xl font-semibold tracking-tight">
+        Have something like this to build?
+      </h2>
+      <p class="mx-auto mt-2 max-w-xl text-base-content/70">
+        Tell me what you're trying to build or fix. I read every message and
+        reply within one business day.
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-3.5">
+        <a href="/#work-with-me" class="btn btn-primary">Start a conversation</a>
+        <a
+          href="mailto:23mwest@gmail.com"
+          class="btn border-base-300 bg-base-100 font-semibold text-base-content shadow-none hover:border-base-content/40"
+          >Email me</a
+        >
+      </div>
+    </div>
+  </section>
+</Header>
+
+<style>
+  /* Keep the radios out of the layout but still focusable/checkable. */
+  .work-tab-input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+</style>

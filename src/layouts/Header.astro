@@ -1,6 +1,11 @@
 ---
 import "../styles/global.css";
 
+const {
+  title = "Michael J West",
+  description = "Michael J West builds and ships web and mobile products — from MVP to 50,000+ users. Currently taking on select freelance and contract work in Pittsburgh, PA and remote.",
+} = Astro.props;
+
 const normalizePath = (path) => {
   const withoutHashOrQuery = path.split("#")[0].split("?")[0];
   const withoutHtml =
@@ -16,7 +21,11 @@ const normalizePath = (path) => {
 const currentPath = normalizePath(Astro.url.pathname);
 const navItems = [
   { href: "/", label: "About", paths: ["/"] },
-  { href: "/apps", label: "Apps", paths: ["/apps"] },
+  {
+    href: "/work",
+    label: "Work",
+    paths: ["/work"],
+  },
   { href: "/links", label: "Links", paths: ["/links"] },
   // {
   //   label: "Fun",
@@ -32,7 +41,12 @@ const navItems = [
 ];
 
 const isActivePath = (paths = []) =>
-  paths.some((path) => normalizePath(path) === currentPath);
+  paths.some((path) => {
+    const normalized = normalizePath(path);
+    if (normalized === currentPath) return true;
+    // Highlight a section for its child routes, e.g. /case-studies/feathersnap.
+    return normalized !== "/" && currentPath.startsWith(`${normalized}/`);
+  });
 
 const isNavItemActive = (item) => {
   if (item.children) {
@@ -49,11 +63,8 @@ const isNavItemActive = (item) => {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Michael J West</title>
-    <meta
-      name="description"
-      content="Michael J West builds and ships web and mobile products — from MVP to 50,000+ users. Currently taking on select freelance and contract work in Pittsburgh, PA and remote."
-    />
+    <title>{title}</title>
+    <meta name="description" content={description} />
     <script is:inline>
       (() => {
         const mode = localStorage.getItem("theme");
